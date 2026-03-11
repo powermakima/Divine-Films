@@ -9,6 +9,7 @@ const Header = () => {
         </Link>
         <nav className="flex items-center space-x-6">
           <Link to="/" className="hover:text-gray-300 transition-colors">Home</Link>
+          <Link to="/movies" className="hover:text-gray-300 transition-colors">Movies</Link>
           <Link to="/login" className="hover:text-gray-300 transition-colors">Login</Link>
           <Link to="/register" className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
             Sign Up

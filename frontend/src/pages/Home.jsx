@@ -1,48 +1,116 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Antigravity from '../components/Antigravity';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/movies').then(res => setMovies(res.data));
-  }, []);
-
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      <Antigravity />
+      {/* Antigravity Background Effect */}
+      <div style={{ 
+        width: '100%', 
+        height: '100vh', 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        zIndex: 1,
+        pointerEvents: 'none'
+      }}>
+        <Antigravity
+          count={400}
+          magnetRadius={8}
+          ringRadius={9}
+          waveSpeed={0.3}
+          waveAmplitude={1.2}
+          particleSize={2}
+          lerpSpeed={0.04}
+          color="#962020"
+          autoAnimate
+          particleVariance={1.5}
+          rotationSpeed={0}
+          depthFactor={1}
+          pulseSpeed={2}
+          particleShape="capsule"
+          fieldStrength={12}
+        />
+      </div>
+
+      {/* Dark Gradient Overlay */}
       <div 
-        className="min-h-screen p-8 relative z-20 pointer-events-auto"
+        className="absolute inset-0 z-10"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(20,20,20,0.6), rgba(0,0,0,0.5))'
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7), rgba(0,0,0,0.85))'
         }}
-      >
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold mb-12 text-center text-white">Just watch a goddamn movie</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-          {movies.map(movie => (
-            <Link key={movie._id} to={`/movie/${movie._id}`} className="group">
-              <div className="bg-gray-800 rounded-xl overflow-hidden shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-1 group-hover:shadow-3xl">
-                <div className="relative overflow-hidden">
-                  <img src={movie.thumbnail} alt={movie.title} className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                </div>
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold text-white mb-2 truncate">{movie.title}</h2>
-                  <p className="text-gray-400 text-sm mb-2">{movie.category}</p>
-                  <div className="flex items-center">
-                    <span className="text-yellow-400 text-sm">★ {movie.rating}</span>
-                    <span className="text-gray-500 text-sm ml-2">• {new Date(movie.releaseDate).getFullYear()}</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+      />
+
+      {/* Main Content */}
+      <div className="relative z-20 min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="text-center max-w-6xl mx-auto">
+          {/* Hero Title */}
+          <h1 
+            className="font-bold mb-8 leading-none tracking-tighter"
+            style={{
+              fontSize: 'clamp(4rem, 15vw, 12rem)',
+              color: 'white',
+              textShadow: '0 0 40px rgba(150, 32, 32, 0.5)',
+              letterSpacing: '-0.05em'
+            }}
+          >
+            DIVINE
+            <br />
+            FILMS
+          </h1>
+
+          {/* Divider */}
+          <div className="w-24 h-1 bg-red-700 mx-auto mb-8"></div>
+
+          {/* Tagline */}
+          <p 
+            className="text-xl md:text-2xl text-gray-300 mb-4 font-light tracking-wide"
+            style={{ fontFamily: 'Libre Baskerville, serif' }}
+          >
+            A CURATED COLLECTION OF CINEMATIC MASTERPIECES
+          </p>
+
+          {/* Description */}
+          <p className="text-gray-400 text-base md:text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
+            Immerse yourself in a carefully selected world of extraordinary films. 
+            From timeless classics to modern masterworks, discover stories that move, 
+            inspire, and transform.
+          </p>
+
+          {/* CTA Button */}
+          <Link 
+            to="/movies"
+            className="inline-block group"
+          >
+            <div 
+              className="bg-transparent hover:bg-red-900 text-white px-12 py-5 text-lg font-semibold tracking-widest uppercase transition-all duration-300 relative overflow-hidden rounded-full"
+              style={{
+                border: '3px solid #962020',
+                boxShadow: '0 0 30px rgba(150, 32, 32, 0.3)'
+              }}
+            >
+              <span className="relative z-10">Explore Movies</span>
+              <div 
+                className="absolute inset-0 bg-red-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
+              ></div>
+            </div>
+          </Link>
+
+          {/* Bottom Text */}
+          <p className="text-gray-600 text-sm mt-16 tracking-wider uppercase">
+            In-Store Experience • Streaming Collection
+          </p>
         </div>
       </div>
-      </div>
+
+      {/* Film Strip Effect (optional decorative element) */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-2 z-20"
+        style={{
+          background: 'repeating-linear-gradient(90deg, #962020 0px, #962020 20px, transparent 20px, transparent 40px)',
+          opacity: 0.3
+        }}
+      ></div>
     </div>
   );
 };
