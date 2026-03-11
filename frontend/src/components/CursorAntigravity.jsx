@@ -74,9 +74,8 @@ const CursorAntigravity = () => {
     };
 
     const animate = () => {
-      // Very subtle fade for motion trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.01)';
-      ctx.fillRect(0, 0, width, height);
+      // Clear canvas completely to prevent trail effects
+      ctx.clearRect(0, 0, width, height);
 
       // Draw all particles
       particles.current.forEach(drawParticle);

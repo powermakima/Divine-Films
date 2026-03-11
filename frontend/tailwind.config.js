@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'canterbury': ['Source Serif Pro', 'serif'],
+        'canterbury': ['Libre Baskerville', 'serif'],
       },
     },
   },
