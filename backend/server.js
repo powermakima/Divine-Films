@@ -11,8 +11,14 @@ const bootstrap = async () => {
   if (process.env.AUTO_SEED_ON_EMPTY_DB !== 'false') {
     const seedResult = await seedMoviesIfNeeded();
     if (seedResult.seeded) {
-      console.log(`Initial movie seed completed (${seedResult.inserted} records).`);
+      console.log(
+        `Movie seed completed (${seedResult.inserted} records). Reason: ${seedResult.reason}.`
+      );
+    } else {
+      console.log(`Movie seed skipped. Reason: ${seedResult.reason}.`);
     }
+  } else {
+    console.log('Movie auto-seed disabled via AUTO_SEED_ON_EMPTY_DB=false.');
   }
 
   app.listen(port, () => {

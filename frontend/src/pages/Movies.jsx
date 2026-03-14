@@ -3,11 +3,27 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Antigravity from '../components/Antigravity';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/movies').then(res => setMovies(res.data));
+    const fetchMovies = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/movies`);
+        setMovies(Array.isArray(res.data) ? res.data : []);
+      } catch (err) {
+        setError('Could not load movies. Make sure the backend is running on port 5000.');
+        console.error('Failed to load movies:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
   }, []);
 
   return (
@@ -47,6 +63,15 @@ const Movies = () => {
       >
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl font-bold mb-12 text-center text-white">Just watch a goddamn movie</h1>
+        {loading && (
+          <p className="text-center text-gray-300 text-lg mb-8">Loading movies...</p>
+        )}
+        {error && (
+          <p className="text-center text-red-400 text-lg mb-8">{error}</p>
+        )}
+        {!loading && !error && movies.length === 0 && (
+          <p className="text-center text-gray-300 text-lg mb-8">No movies found in the database.</p>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
           {movies.map(movie => (
             <Link key={movie._id} to={`/movie/${movie._id}`} className="group">
