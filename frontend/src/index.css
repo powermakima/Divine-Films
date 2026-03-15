@@ -3,3 +3,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes divine-text-loop {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+
+.home-text-loop {
+	width: 100vw;
+	overflow: hidden;
+}
+
+.home-text-loop__track {
+	display: flex;
+	width: max-content;
+	white-space: nowrap;
+	animation: divine-text-loop 42s linear infinite;
+}
+
+.home-text-loop__item {
+	padding: 0.95rem 2.5rem;
+	color: rgba(255, 255, 255, 0.84);
+	font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}

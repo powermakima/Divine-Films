@@ -15,7 +15,7 @@ const MovieDetails = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-8">
       <div className="max-w-6xl mx-auto">
-        <Link to="/" className="inline-flex items-center text-red-400 hover:text-red-300 mb-8 transition-colors">
+        <Link to="/movies" className="inline-flex items-center text-red-400 hover:text-red-300 mb-8 transition-colors">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>

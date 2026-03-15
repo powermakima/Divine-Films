@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import Antigravity from '../components/Antigravity';
 
 const Home = () => {
+  const loopText =
+    'Immerse yourself in a carefully selected world of extraordinary films. From timeless classics to modern masterworks, discover stories that move, inspire, and transform.';
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Antigravity Background Effect */}
@@ -42,21 +45,29 @@ const Home = () => {
       />
 
       {/* Main Content */}
-      <div className="relative z-20 min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="text-center max-w-6xl mx-auto">
+      <div className="relative z-20 min-h-screen flex flex-col items-center justify-center px-0">
+        <div className="text-center w-screen max-w-none mx-auto overflow-hidden">
+          <div className="home-text-loop mb-8" aria-label="Featured message loop">
+            <div className="home-text-loop__track">
+              <span className="home-text-loop__item">{loopText}</span>
+              <span className="home-text-loop__item" aria-hidden="true">{loopText}</span>
+              <span className="home-text-loop__item" aria-hidden="true">{loopText}</span>
+              <span className="home-text-loop__item" aria-hidden="true">{loopText}</span>
+            </div>
+          </div>
+
           {/* Hero Title */}
           <h1 
-            className="font-bold mb-8 leading-none tracking-tighter"
+            className="font-bold mb-10 leading-[0.88] tracking-[-0.055em] w-screen whitespace-nowrap px-0"
             style={{
-              fontSize: 'clamp(4rem, 15vw, 12rem)',
+              fontSize: 'clamp(3.2rem, 17.2vw, 21rem)',
               color: 'white',
-              textShadow: '0 0 40px rgba(150, 32, 32, 0.5)',
-              letterSpacing: '-0.05em'
+              textShadow: '0 0 52px rgba(150, 32, 32, 0.55)',
+              letterSpacing: '-0.055em',
+              transform: 'scaleX(1.04)'
             }}
           >
-            DIVINE
-            <br />
-            FILMS
+            DIVINE FILMS
           </h1>
 
           {/* Divider */}
@@ -65,16 +76,8 @@ const Home = () => {
           {/* Tagline */}
           <p 
             className="text-xl md:text-2xl text-gray-300 mb-4 font-light tracking-wide"
-            style={{ fontFamily: 'Libre Baskerville, serif' }}
           >
             A CURATED COLLECTION OF CINEMATIC MASTERPIECES
-          </p>
-
-          {/* Description */}
-          <p className="text-gray-400 text-base md:text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-            Immerse yourself in a carefully selected world of extraordinary films. 
-            From timeless classics to modern masterworks, discover stories that move, 
-            inspire, and transform.
           </p>
 
           {/* CTA Button */}
